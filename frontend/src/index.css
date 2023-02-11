@@ -1,0 +1,14 @@
+
+
+body {
+  margin: 0;
+  font-family: 'Assistant', sans-serif;
+font-family: 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Assistant', sans-serif;
+font-family: 'Noto Sans', sans-serif;
+}

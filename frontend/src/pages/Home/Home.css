@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Assistant', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
+  .main1 {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .video1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .text{
+    color:white;
+    font-size: 50px;
+  }
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+    background-color: #000000cc;
+  }
+
+  .btn41-43 {
+    padding: 10px 25px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    background: transparent;
+    outline: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .btn-41 {
+    border: 2px solid rgb(255, 255, 255);
+    z-index: 1;
+    color: white;
+  }
+  
+  .btn-41:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    direction: rtl;
+    z-index: -1;
+    background: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-41:hover {
+    color: rgb(0, 0, 0);
+  }
+  
+  .btn-41:hover:after {
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+  
+  .btn-41:active {
+    top: 2px;
+  }
+
+  a:hover{
+    color: black;
+  }
+ 
+ 
+  
+/* .home-header {
+    background: linear-gradient(100deg,#FF8C00, #FFA500);
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.home-container {
+    background: black
+}
+.header-btn:hover {
+    border-color: white;
+}
+
+.home-heading {
+    padding: 0px;
+    margin: 0px;
+    font-size: 44px;
+    margin-left: 30px;
+    color: white;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.home-main {
+    margin: auto;
+    margin-top: -50px;
+    width: 100vw;
+    height: 100vh;    
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0, 0, 0, 0.8)), url('../../utils/images/yoga_pose.png') ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:  750px;
+}
+
+.description {
+    font-size: 66px;
+    color: white;
+    text-align: center;
+    margin: 0px;
+    margin-top: 10px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.btn-section {
+    position: absolute;
+    left: 38vw;
+    top: 60vh;
+}
+
+.btn{
+    padding: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 10px 20px 10px 20px;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    font-size: 24px;
+    border-color: #FFA500;
+    border-radius: 8px;
+    border-width: 4px;
+    cursor: pointer;
+}
+.btn:hover {
+    background: rgba(255,165,0, 0.2);
+    color: white;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+#about-btn {
+    padding: 5px 10px;
+}
+#about-btn:hover {
+    border-color: white;
+    background-color: white;
+    color: black;
+}
+#about-btn:focus {
+    box-shadow: none;
+    background: white;
+    border-color: white;
+    color: black;
+} */

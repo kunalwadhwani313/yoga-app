@@ -1,0 +1,99 @@
+export default function Home() {
+
+    return (
+        <div className='home-container'>
+            <div className='home-header'>
+                <h1 className='home-heading'>YogaIntelliJ</h1>
+                <Link to='/about'>
+                    <button 
+                        className="btn btn-secondary" 
+                        id="about-btn"
+                    >
+                        About
+                    </button>
+                </Link>
+            </div>
+
+            <h1 className="description">A Yoga AI Trainer</h1>
+            <div className="home-main">
+                <div className="btn-section">
+                    <Link to='/start'>
+                        <button
+                            className="btn start-btn"
+                        >Let's Start</button>
+                    </Link>
+                    <Link to='/tutorials'>
+                        <button
+                            className="btn start-btn"
+                        >Tutorials</button>
+                    </Link>
+
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+
+
+import React,{useState} from 'react'
+import { Link } from 'react-router-dom'
+import video from '../../assests/video.mp4'
+
+import './Home.css'
+
+
+
+const Home = () => {
+   
+    const [hover, setHover] =useState(false)
+
+    const myStyle = {
+        color: hover ? 'black' : 'white',
+        textDecoration: "none",
+        transition : 3,
+        margin:"2px"
+    }
+
+    const handleMouseEnter = () => {
+        setHover(true);
+      };
+    
+      const handleMouseLeave = () => {
+        setHover(false);
+      };
+  
+    return (
+      <div className='main'>
+          <div className="overlay"></div>
+          <video src={video} autoPlay loop muted />
+          <div className="content">
+              <h1>Welcome</h1>
+              <p>To my site.</p>
+              <p className='buttons'>
+                
+                    <Link to="/start"  style={myStyle} 
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}>
+                    <button className='btn41-43 btn-41'>  Let's Start
+                    </button>
+                    </Link>
+    
+                
+                    <Link to ="/about" style={myStyle} 
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}>
+                        <button className='btn41-43 btn-41'>Tutorials
+                        </button>
+                        
+                    </Link>
+                
+               </p>
+          </div>
+      </div>
+      
+    )
+  }
+  
+  export default Home
