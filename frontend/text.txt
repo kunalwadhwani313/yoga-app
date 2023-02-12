@@ -1,3 +1,37 @@
+
+
+export const options2 = {
+  method: 'GET',
+ // url: 'https://youtube-search-and-download.p.rapidapi.com/video/related',
+
+  headers: {
+    'X-RapidAPI-Key': 'f748a2f8edmshb8861c953744609p1ca5b1jsn2434550f4137',
+    'X-RapidAPI-Host': 'youtube-search-and-download.p.rapidapi.com'
+  }
+};
+
+export const fetchData = async (url , options) => {
+    
+    const response = await fetch(url , options);
+
+    const data = await response.json();
+
+    return data;
+}
+
+
+const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
+
+ const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${currentPose} yoga` , options2);
+
+
+
+
+
+
+
+
+
 export default function Home() {
 
     return (

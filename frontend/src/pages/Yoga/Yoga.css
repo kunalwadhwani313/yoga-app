@@ -22,6 +22,7 @@
 
 .bn31 {
     position: absolute;
+    bottom: 10%;
     left: 45%;
     border: 5em;
     cursor: pointer;
