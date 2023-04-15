@@ -200,3 +200,32 @@
       }
   }
   
+
+  /* .parent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    
+    height: 50%;
+    } */
+
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+.pose-demo-img {
+  margin-top: 10px;
+  height: 450px;
+  aspect-ratio: 1;
+  border-radius: 15px;
+}
+
+/* .child{
+  
+} */

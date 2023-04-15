@@ -4,8 +4,17 @@ import React, { useRef, useState, useEffect } from 'react'
 import backend from '@tensorflow/tfjs-backend-webgl'
 import Webcam from 'react-webcam'
 import { count } from '../../utils/music'; 
+import ConfettiExplosion from 'react-confetti-explosion';
+import Carousel from 'react-bootstrap/Carousel';
+import CardComponent from '../../components/Card/CardComponent';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Alert from 'react-bootstrap/Alert';
+
+
+import { fetchData , options2 } from '../../fetchData/fetchData' 
  
 import Instructions from '../../components/Instrctions/Instructions';
+import Stack from 'react-bootstrap/Stack'
 
 import './Yoga.css'
  
@@ -29,17 +38,19 @@ let interval
 let flag = false
 
 
+
 function Yoga() {
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
-
+  const [isExploding, setIsExploding] = useState(false);
   const [startingTime, setStartingTime] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [poseTime, setPoseTime] = useState(0)
   const [bestPerform, setBestPerform] = useState(0)
   const [currentPose, setCurrentPose] = useState('Tree')
   const [isStartPose, setIsStartPose] = useState(false)
+  const [youtubeVideos, setYoutubeVideos] = useState([]);
 
   
   useEffect(() => {
@@ -57,6 +68,18 @@ function Yoga() {
     setCurrentTime(0)
     setPoseTime(0)
     setBestPerform(0)
+
+    const SearchVideo = async () => {
+      const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
+      const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${currentPose} pose yoga` , options2);
+      console.log(exerciseVideosData)
+      setYoutubeVideos(exerciseVideosData.contents);
+  }
+
+  SearchVideo()
+
+  console.log(youtubeVideos)
+
   }, [currentPose])
 
   const CLASS_NO = {
@@ -201,6 +224,7 @@ function Yoga() {
   function startYoga(){
     setIsStartPose(true) 
     runMovenet()
+    console.log('yoga started')
   } 
 
   function stopPose() {
@@ -208,7 +232,28 @@ function Yoga() {
     clearInterval(interval)
   }
 
+const myStyle = {
+      color: 'pink',
+      zIndex: 2
+}
+
+
     
+useEffect(() => {
+  console.log('best')
+  
+  if(bestPerform != 0)
+  {
+    console.log('go')
+    setIsExploding(true)
+    setTimeout(() => {
+      setIsExploding(false)
+    } , 4000)  
+  }
+ 
+}, [bestPerform])
+
+
 
   if(isStartPose) {
     return (
@@ -220,6 +265,13 @@ function Yoga() {
             <div className="pose-performance">
               <h5>Best: {bestPerform} s</h5>
             </div>
+          </div>
+          <div style={myStyle}>
+            <>
+            {isExploding && <ConfettiExplosion zIndex = {2}  /> && <Alert> Congratulations!! </Alert>}
+            {/* onComplete={() => setIsExploding(false)} duration={2200} force = {0.8} */}
+           </>
+            
           </div>
         <div>
           
@@ -235,6 +287,7 @@ function Yoga() {
             padding: '0px',
           }}
         />
+        {isExploding && <ConfettiExplosion zIndex = {2}  />}
         
           <canvas
             ref={canvasRef}
@@ -266,21 +319,77 @@ function Yoga() {
   }
 
   return (
-    <div
-      className="yoga-container"
-    >
-      <DropDown
+    <div className="yoga-container">
+     
+<div style = {{marginTop: 10 , marginBottom: 10}}>
+<Carousel>
+      <Carousel.Item interval={1000}>
+        <div style={{height : '96vh' , marginLeft: 'auto' , marginRight : 'auto'}}>
+          <Instructions
+          currentPose={currentPose}/>
+          
+        </div>
+        
+      </Carousel.Item>
+      <Carousel.Item interval={500}>
+      <div style={{height : '96vh' , marginLeft: 'auto' , marginRight : 'auto'}}>
+  
+        <CardGroup style = {{height: '50%' , marginLeft: '15%' , marginRight: '10%'}}>
+            {youtubeVideos?.slice(0 , 6).map(
+          (item ,index) => (
+            <div className="child" key={index} >
+         
+              <CardComponent
+              // text={item.video.title}
+              image = {item.video.thumbnails[0].url}
+              imageTitle = {item.video.title}
+              videoLink = {item.video.id}
+              />
+              
+            </div>
+          ))}
+          </CardGroup>
+      </div>
+        {/* <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption> */}
+      </Carousel.Item>
+      <Carousel.Item>
+      <div style={{height : '96vh' , marginLeft: 'auto' , marginRight : 'auto'}}>
+
+      <Stack>
+       
+       <DropDown
         poseList={poseList}
         currentPose={currentPose}
         setCurrentPose={setCurrentPose}
       />
-      <Instructions
-          currentPose={currentPose}
-        />
-      <button
+
+      <div style={{marginRight: 'auto' , marginLeft: 'auto'}}>
+        <img 
+                className="pose-demo-img"
+                src={poseImages[currentPose]}
+            />
+      </div>
+
+     <div>
+     <button
           onClick={startYoga}
           className="bn31"    
-        >Start Pose</button>
+        >Start Pose
+      </button>
+     </div>
+
+      </Stack>
+
+      </div>
+        
+      </Carousel.Item>
+    </Carousel>
+</div>
+
+
     </div>
   )
 }

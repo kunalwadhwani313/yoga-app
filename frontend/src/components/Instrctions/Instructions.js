@@ -3,29 +3,18 @@ import React, { useState ,useEffect } from 'react'
 import { poseInstructions } from '../../utils/data'
 
 import { poseImages } from '../../utils/pose_images'
+import AnimatedText from 'react-animated-text-content';
 
-import { fetchData , options2 } from '../../fetchData/fetchData'
+
 
 import './Instructions.css'
 
 export default function Instructions({ currentPose }) {
 
-    const [youtubeVideos, setYoutubeVideos] = useState([]);
+    
 
     useEffect(() => {
-
-        const SearchVideo = async () => {
-            const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
-            const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${currentPose} pose yoga` , options2);
-            console.log(exerciseVideosData)
-            setYoutubeVideos(exerciseVideosData.contents);
-        }
       console.log("Pose hit" , currentPose)
-      SearchVideo()
-     
-        console.log(youtubeVideos)
-      
-
     }, [currentPose])
     
 
@@ -33,6 +22,29 @@ export default function Instructions({ currentPose }) {
 
     return (
         <div className="instructions-container">
+
+    <div className='textdiv'>
+      <AnimatedText style = {{color: 'white' , fontWeight: 'bold' ,fontSize: '5rem'}}
+          type="words" // animate words or chars
+          animation={{
+            x: '200px',
+            y: '-20px',
+            scale: 1.1,
+            ease: 'ease-in-out',
+          }}
+          animationType="float"
+          interval={0.06}
+          duration={0.7}
+          tag="p"
+          className="animated-paragraph"
+          includeWhiteSpaces
+          threshold={0.1}
+          rootMargin="20%"
+        >
+        Rules To Follow
+      </AnimatedText>
+      </div>
+
             <ul className="instructions-list">
                 {instructions[currentPose].map((instruction) => {
                     return(
@@ -43,25 +55,8 @@ export default function Instructions({ currentPose }) {
             </ul>
             <div>
 
-            {/* <img 
-                className="pose-demo-img"
-                src={poseImages[currentPose]}
-            /> */}
-            <div className="parent">
-            {youtubeVideos?.slice(0 , 6).map(
-          (item ,index) => (
-            <div className="child" key={index} >
-            <a
-             href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
-            target="_blank"
-            rel="noreferrer"
-            >
-              <img className='thumbnail' src={item.video.thumbnails[0].url} alt={item.video.title} height="200px" width="250px"/>
-              <div className='caption'>{item.video.title}</div>
-            </a>
-            </div>
-          ))}
-          </div>
+            
+          
             </div>
            
         </div>
