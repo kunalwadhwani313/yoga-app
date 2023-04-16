@@ -268,7 +268,7 @@ useEffect(() => {
           </div>
           <div style={myStyle}>
             <>
-            {isExploding && <ConfettiExplosion zIndex = {2}  /> && <Alert> Congratulations!! </Alert>}
+            {isExploding && <ConfettiExplosion zIndex = {2}  /> && <Alert> Congratulations!! You scored the new best score </Alert>}
             {/* onComplete={() => setIsExploding(false)} duration={2200} force = {0.8} */}
            </>
             
